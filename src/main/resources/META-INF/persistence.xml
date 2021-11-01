@@ -8,9 +8,9 @@
             <property name="javax.persistence.jdbc.driver"
                       value="org.postgresql.Driver"/> <!-- DB Driver -->
             <property name="javax.persistence.jdbc.url"
-                      value="jdbc:postgresql://localhost:6543/progwebdib?charSet=LATIN1;"/> <!-- BD Mane -->
+                      value="jdbc:postgresql://localhost:5432/postgres?charSet=LATIN1;"/> <!-- BD Mane -->
             <property name="javax.persistence.jdbc.user" value="postgres"/> <!-- DB User -->
-            <property name="javax.persistence.jdbc.password" value="postgres"/> <!-- DB Password -->
+            <property name="javax.persistence.jdbc.password" value="changeme"/> <!-- DB Password -->
             <property name="hibernate.connection.characterEncoding" value="utf8" />
             <property name="hibernate.connection.charSet" value="UTF-8"/>
             <property name="hibernate.connection.useUnicode" value="true" />
