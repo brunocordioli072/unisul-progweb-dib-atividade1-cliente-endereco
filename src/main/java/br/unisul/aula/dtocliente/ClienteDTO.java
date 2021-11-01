@@ -23,12 +23,16 @@ public class ClienteDTO {
         this.nomeCliente = cliente.getNome();
         this.complementoCliente = cliente.getComplemento();
         this.numeroCliente = cliente.getNumero();
-        this.idEndereco = cliente.getEndereco().getId();
-        this.logradouroEndereco = cliente.getEndereco().getLogradouro();
-        this.cepEndereco = cliente.getEndereco().getCep();
-        this.bairroEndereco = cliente.getEndereco().getBairro();
-        this.cidadeEndereco = cliente.getEndereco().getCidade();
-        this.ufEndereco = cliente.getEndereco().getUf().name();
+        if(cliente.getEndereco() != null) {
+            this.idEndereco = cliente.getEndereco().getId();
+            this.logradouroEndereco = cliente.getEndereco().getLogradouro();
+            this.cepEndereco = cliente.getEndereco().getCep();
+            this.bairroEndereco = cliente.getEndereco().getBairro();
+            this.cidadeEndereco = cliente.getEndereco().getCidade();
+            if (cliente.getEndereco().getUf() != null) {
+                this.ufEndereco = cliente.getEndereco().getUf().name();
+            }
+        }
     }
 
 

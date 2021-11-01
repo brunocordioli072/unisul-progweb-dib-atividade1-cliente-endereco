@@ -10,7 +10,8 @@ public class Cliente {
     private String nome;
     private String complemento;
     private Integer numero;
-    @OneToOne
+    // https://stackoverflow.com/questions/2302802/how-to-fix-the-hibernate-object-references-an-unsaved-transient-instance-save
+    @OneToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "endereco_id")
     private Endereco endereco;
 

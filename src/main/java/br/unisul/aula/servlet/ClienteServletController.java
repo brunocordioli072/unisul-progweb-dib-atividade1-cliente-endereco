@@ -1,8 +1,11 @@
 package br.unisul.aula.servlet;
 
 import br.unisul.aula.banco.ClienteDAO;
+import br.unisul.aula.dtocliente.ClienteByCidadeAndUfDTO;
 import br.unisul.aula.dtocliente.ClienteDTO;
+import br.unisul.aula.dtocliente.ClienteResumidoDTO;
 import br.unisul.aula.modelo.Cliente;
+import br.unisul.aula.modelo.UnidadeFederativa;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
@@ -24,9 +27,28 @@ public class ClienteServletController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json;charset=ISO-8859-1");
-        response.setCharacterEncoding("ISO-8859-1");
+        response.setCharacterEncoding("UTF-8");
+        String requestId = request.getParameter("id");
+        String requestEndereco = request.getParameter("endereco");
         String clienteJson;
-        if (request.getParameter("id") == null) {
+        if (requestId != null) {
+            Long id = Long.parseLong(requestId);
+            Cliente cliente = clienteDAO.findById(id);
+            ClienteDTO dto = new ClienteDTO(cliente);
+            clienteJson = gson.toJson(dto);
+        } else if (requestEndereco != null) {
+            List<Cliente> clientes = clienteDAO.findByCidade(requestEndereco);
+            List<ClienteResumidoDTO> dtos = new ArrayList<>();
+            clientes.forEach(c -> {
+                ClienteResumidoDTO clienteResumidoDTO = new ClienteResumidoDTO(c);
+                dtos.add(clienteResumidoDTO);
+            });
+            ClienteByCidadeAndUfDTO dto = new ClienteByCidadeAndUfDTO();
+            dto.setCidade(requestEndereco);
+            dto.setUf(UnidadeFederativa.SC);
+            dto.setClientes(dtos);
+            clienteJson = gson.toJson(dto);
+        } else {
             List<Cliente> clienteList = clienteDAO.findAll();
             List<ClienteDTO> dtos = new ArrayList<>();
             for (int i = 0; i < clienteList.size(); i++) {
@@ -34,11 +56,6 @@ public class ClienteServletController extends HttpServlet {
                 dtos.add(dto);
             }
             clienteJson = gson.toJson(dtos);
-        } else {
-            Long id = Long.parseLong(request.getParameter("id"));
-            Cliente cliente = clienteDAO.findById(id);
-            ClienteDTO dto = new ClienteDTO(cliente);
-            clienteJson = gson.toJson(dto);
         }
         response.getWriter().println(clienteJson);
     }

@@ -1,16 +1,36 @@
 package br.unisul.aula.banco;
 
+import br.unisul.aula.dtocliente.ClienteDTO;
 import br.unisul.aula.modelo.Cliente;
+import br.unisul.aula.modelo.Endereco;
+import br.unisul.aula.modelo.UnidadeFederativa;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 public class ClienteDAO {
+
+    public ClienteDAO() {
+        List<Cliente> clientes = this.findAll();
+        if (clientes.size() > 0) clientes.forEach(c -> this.remove(c.getId()));
+        Endereco endereco = new Endereco();
+        endereco.setCidade("Desterro");
+        endereco.setUf(UnidadeFederativa.SC);
+        Cliente cliente1 = new Cliente();
+        cliente1.setNome("Rodrigo");
+        cliente1.setEndereco(endereco);
+        Cliente cliente2 = new Cliente();
+        cliente2.setNome("João");
+        cliente2.setEndereco(endereco);
+        this.insert(cliente1);
+        this.insert(cliente2);
+    }
+
     public void insert(Cliente cliente) {
         EntityManager entityManager = JPAUtil.getEntityManager();
         entityManager.getTransaction().begin();
-        entityManager.persist(cliente);
+        entityManager.persist(entityManager.contains(cliente) ? cliente : entityManager.merge(cliente));
         entityManager.getTransaction().commit();
     }
 
@@ -18,7 +38,8 @@ public class ClienteDAO {
         EntityManager entityManager = JPAUtil.getEntityManager();
         entityManager.getTransaction().begin();
         Cliente cliente = findById(id);
-        entityManager.remove(cliente);
+        // https://stackoverflow.com/questions/17027398/java-lang-illegalargumentexception-removing-a-detached-instance-com-test-user5
+        entityManager.remove(entityManager.contains(cliente) ? cliente : entityManager.merge(cliente));
         entityManager.getTransaction().commit();
     }
 
