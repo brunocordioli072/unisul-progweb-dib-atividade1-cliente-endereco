@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: darkgrey;
+}
+
+.header {
+    background-color: azure;
+    position: relative;
+    padding: 1rem;
+}
+
+.header__title, .header__subtitle {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 50%;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    height: 300px;
+    width: 50%;
+    border: 3px solid lightgreen;
+    position: relative;
+    margin: auto;
+    top: 200px;
+    background: white;
+}
+
+.box__content {
+    margin: 0 auto;
+    display: block;
+    position: relative;
+    top: 50px;
+}
+
+.box__content__address {
+    margin: 5px 0;
+    width: 100%;
+}
+
+.box__content__submit {
+    margin: 5px 0;
+}
+
+table, th, td  {
+    border: 1px solid black;
+}
