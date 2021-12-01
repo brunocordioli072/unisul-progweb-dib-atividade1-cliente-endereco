@@ -25,6 +25,13 @@ Prazo 03/11/2021.
 ### Informações adicionais
 * Utilizar o projeto atual como base, pode ser modificado para atender as necessidades.
 
+### Instalação
+
+- intellij - https://www.jetbrains.com/idea/ \
+- tomcat - https://tomcat.apache.org/download-80.cgi \
+- wsl - https://docs.microsoft.com/en-us/windows/wsl/install-manual \
+- docker - https://www.docker.com/
+
 ### Como testar
 1. Subir o docker com o postgres e o pgadmin
 ```bash
