@@ -27,9 +27,9 @@ Prazo 03/11/2021.
 
 ### Instalação
 
-- intellij - https://www.jetbrains.com/idea/ \
-- tomcat - https://tomcat.apache.org/download-80.cgi \
-- wsl - https://docs.microsoft.com/en-us/windows/wsl/install-manual \
+- intellij - https://www.jetbrains.com/idea/
+- tomcat - https://tomcat.apache.org/download-80.cgi
+- wsl - https://docs.microsoft.com/en-us/windows/wsl/install-manual
 - docker - https://www.docker.com/
 
 ### Como testar
