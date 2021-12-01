@@ -8,11 +8,11 @@ import lombok.Data;
 
 @Data
 public class ClienteResumidoDTO {
-    private Long idCliente;
-    private String nomeCliente;
+    private Long id;
+    private String nome;
 
     public ClienteResumidoDTO(Cliente cliente) {
-        this.idCliente = cliente.getId();
-        this.nomeCliente = cliente.getNome();
+        this.id = cliente.getId();
+        this.nome = cliente.getNome();
     }
 }

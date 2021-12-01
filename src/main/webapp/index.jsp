@@ -42,7 +42,7 @@
                 const res = JSON.parse(this.responseText);
                 for (let i = 0; i < res.clientes.length; i++) {
                     const c = res.clientes[i];
-                    const cHtml = '<tr><td>' + c.idCliente + '</td><td>' + c.nomeCliente + '</td></tr>';
+                    const cHtml = '<tr><td>' + c.id + '</td><td>' + c.nome + '</td></tr>';
                     $('#response').append(cHtml);
                 }
             }
